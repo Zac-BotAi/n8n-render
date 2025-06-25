@@ -2,6 +2,7 @@ services:
   - type: web
     name: n8n
     env: docker
+    dockerfilePath: ./Dockerfile # Explicitly state the Dockerfile for n8n
     region: oregon # optional (defaults to oregon)
     plan: standard # optional (defaults to starter)
     branch: main # optional (defaults to master)
@@ -62,3 +63,19 @@ services:
 databases:
   - name: n8n-db
     plan: basic-1gb
+
+  # This is your NEW, corrected ngrok service
+  - type: web
+    name: ngrok
+    env: docker
+    # Tell Render to build the Dockerfile from your repository
+    dockerfilePath: ./ngrok.Dockerfile
+    # You DO NOT need a startCommand here, as it's already in the Dockerfile's CMD
+    # Expose the ngrok dashboard if needed (optional, and might require ngrok config changes)
+    # healthCheckPath: /api/http/requests # Example, ngrok dashboard might not be on root
+    # envVars:
+    #   - key: NGROK_AUTHTOKEN # Already set in Render UI
+    #     fromEnvVar: NGROK_AUTHTOKEN
+    # Ensure this service also has access to the NGROK_AUTHTOKEN environment variable
+    # set in the Render UI. Render typically makes environment group variables
+    # available to all services in the group, or you can set it directly on this service too.
