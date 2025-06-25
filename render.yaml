@@ -71,7 +71,7 @@ databases:
     env: docker
     buildContext: . # Specify build context
     # Tell Render to build the Dockerfile from your repository
-    dockerfilePath: ./ngrok.Dockerfile
+    dockerfilePath: ngrok.Dockerfile
     # You DO NOT need a startCommand here, as it's already in the Dockerfile's CMD
     # Expose the ngrok dashboard if needed (optional, and might require ngrok config changes)
     # healthCheckPath: /api/http/requests # Example, ngrok dashboard might not be on root
