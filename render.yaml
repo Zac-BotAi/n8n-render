@@ -2,6 +2,7 @@ services:
   - type: web
     name: n8n
     env: docker
+    buildContext: . # Specify build context
     dockerfilePath: ./Dockerfile # Explicitly state the Dockerfile for n8n
     region: oregon # optional (defaults to oregon)
     plan: standard # optional (defaults to starter)
@@ -68,6 +69,7 @@ databases:
   - type: web
     name: ngrok
     env: docker
+    buildContext: . # Specify build context
     # Tell Render to build the Dockerfile from your repository
     dockerfilePath: ./ngrok.Dockerfile
     # You DO NOT need a startCommand here, as it's already in the Dockerfile's CMD
